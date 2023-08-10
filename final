@@ -1,0 +1,30 @@
+class Producto:
+  def __init__(self, nombre, precio, cantidad):
+    self.nombre = nombre # El nombre del producto
+    self.precio = precio # El precio del producto en soles
+    self.cantidad = cantidad # La cantidad disponible del producto en el stock
+
+  def __str__(self):
+    return f"{self.nombre}: {self.precio} soles, {self.cantidad} unidades"
+
+# Definimos una clase Stock que tiene un atributo productos que es una lista de objetos Producto
+class Stock:
+  def __init__(self):
+    self.productos = [] # La lista de productos en el stock
+
+  def agregar_producto(self, producto):
+    # Esta función agrega un producto al stock si no está ya en la lista, o actualiza su cantidad si ya está
+    encontrado = False # Una variable para indicar si el producto ya está en el stock o no
+    for p in self.productos: # Recorremos la lista de productos
+      if p.nombre == producto.nombre: # Si encontramos el producto con el mismo nombre
+        encontrado = True # Cambiamos la variable a True
+        p.cantidad += producto.cantidad # Actualizamos la cantidad del producto sumando la nueva cantidad
+        break # Salimos del bucle
+    if not encontrado: # Si no encontramos el producto en el stock
+      self.productos.append(producto) # Lo agregamos a la lista
+
+  def mostrar_stock(self):
+    # Esta función muestra el stock actual de los productos
+    print("Stock actual:")
+    for p in self.productos: # Recorremos la lista de productos
+      print(p) # Imprimimos
